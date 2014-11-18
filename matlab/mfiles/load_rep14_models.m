@@ -1,6 +1,6 @@
 
-variable = 'salt';
-%variable = 'temp';
+%variable = 'salt';
+variable = 'temp';
 
 % will use dynamic field names with structures to process variable named
 % above
@@ -33,7 +33,7 @@ disp(['Loading obs from ' obs.url])
 disp(['  Variable is ' obs.(variable).name])
 data     = double(nc{obs.(variable).name}(:));
 %% interp near surface (0-30m) bins, each separately in time
-sz=size(obs.data);
+sz=size(data);
 x=1:sz(1);
 for j=1:30,
     igood=find(~isnan(data(:,j)));
@@ -81,26 +81,18 @@ useast.salt.name = 'salinity';
 % Model: MERCATOR CF-compliant nc file extracted at myocean.eu
 % Registration and user/password authentication required
 mercator.name = 'mercator';
-mercator.url = ['./dataset-psy2v4-pgs-nat-myocean-bestestimate_' ...
-    '1295878772263.nc'];
+mercator.url = 'http://scsrv26v:8080/thredds/dodsC/mercator/fmrc/mercator_best.ncd'
 mercator.file = mercator.url;
 mercator.temp.name = 'temperature'; % <<< in KELVIN !!!!!!!!!!!!!!!!!!!!!
 mercator.salt.name = 'salinity';
 
 % -----------------------------------------------------------------------
 % Model: COAWST CF-compliant ROMS aggregation
-coawst.name = 'coawst';
-% before june 25, 2012
-if tend <= datenum(2012,6,25),
-    coawst.url = ['http://geoport.whoi.edu/thredds/dodsC/' ...
-    'coawst_2_2/fmrc/coawst_2_2_best.ncd'];
-else% after june 25, 2012
-    coawst.url = ['http://geoport.whoi.edu/thredds/dodsC/' ...
-     'coawst_4/use/fmrc/coawst_4_use_best.ncd'];
-end
-coawst.file = 'coawst.nc';
-coawst.temp.name = 'temp';
-coawst.salt.name = 'salt';
+romsfr.name = 'romsfr';
+romsfr.url = 'http://scsrv26v:8080/thredds/dodsC/cmre_roms/fmrc/cmre_roms_best.ncd'
+romsfr.file = 'romsfr.nc';
+romsfr.temp.name = 'temp';
+romsfr.salt.name = 'salt';
 
 % -----------------------------------------------------------------------
 % Model: ESPreSSO CF-compliant ROMS aggregation
@@ -142,7 +134,7 @@ hycom.salt.name = 'salinity';
 model_list = {'USEAST','SABGOM','HYCOM'};     %SECOORA
 
 %model_list = {'USEAST','HYCOM'};     %SECOORA
-model_list = {'NRLLT'};
+model_list = {'NRLLT','MERCATOR','ROMSFR'};
 
 ncks = 0;
 
@@ -188,4 +180,4 @@ disp(['  was ' num2str(sum(tocs),3) ' seconds'])
 disp('----------------------------------------------------------------')
 
 clear nc
-save secoora_models.mat
+save cmre_models.mat

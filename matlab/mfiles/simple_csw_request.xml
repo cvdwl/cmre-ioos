@@ -13,8 +13,8 @@
                     <ogc:BBOX>
                         <ogc:PropertyName>ows:BoundingBox</ogc:PropertyName>
                         <gml:Envelope>
-                            <gml:lowerCorner>LON_MIN LAT_MIN</gml:lowerCorner>
-                            <gml:upperCorner>LON_MAX LAT_MAX</gml:upperCorner>
+                            <gml:lowerCorner>LAT_MIN LON_MIN</gml:lowerCorner>
+                            <gml:upperCorner>LAT_MAX LON_MAX</gml:upperCorner>
                         </gml:Envelope>
                     </ogc:BBOX>
                     <ogc:PropertyIsLessThanOrEqualTo>

@@ -2,9 +2,9 @@
 % Plot sections distance versus time of glider and model temp and salt
 %
 % load previously saved data file, or just
-% call this script after calling "load_secoora_models.m"
-% load_secoora_models
-% load secoora_models.mat
+% call this script after calling "load_rep14_models.m"
+% load_rep14_models
+% load cmre_models.mat
 
 [obs.server,obs.name] = fileparts(obs.url);
 %obsname = strrep_(obs.name);
@@ -27,7 +27,7 @@ end
 %model_list = {'OBS','ESPreSSo','USEAST','HYCOM'}; %MARACOOS
 model_list = {'OBS','SABGOM','USEAST','HYCOM'}; %SECOORA
 %model_list = {'OBS','USEAST','HYCOM'}; %SECOORA
-model_list = {'OBS','NRLLT'}
+model_list = {'OBS','NRLLT','MERCATOR'}
 
 clf
 hax = nfigaxes([length(model_list) 1],[0 0.02],[0.1 0.95],[0.1 0.95]);
@@ -38,7 +38,9 @@ for m = 1:length(model_list)
   eval(['model = ' lower(mname)])
   
   axes(hax(m))
-  
+  if min(model.(variable).data(:))>=200.
+      model.(variable).data=model.(variable).data-273.15;
+  end
   pcolorjw(model.(variable).dist,model.(variable).z,model.(variable).data)
   %axis([0 200 -80 0]);
   ax=[0 350 -50 0];
