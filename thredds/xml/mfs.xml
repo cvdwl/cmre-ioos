@@ -11,35 +11,25 @@
   <service name="uddc" serviceType="UDDC" base="/thredds/uddc/"/>
 
  </service>
-  <dataset name="Mercator Nowcast/Forecast Runs" >
+  <dataset name="MFS Nowcast/Forecast Runs" >
 
 
-   <featureCollection name="mercator" featureType="FMRC" harvest="true" path="mercator/fmrc">
+   <featureCollection name="mfs" featureType="FMRC" harvest="true" path="mfs/fmrc">
     <metadata inherited="true">
-     <documentation type="summary">Mercator Output </documentation>
+     <documentation type="summary">MFS Output </documentation>
      <serviceName>allServices</serviceName>
     </metadata>
-    <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/Mercator/REP14.*\.nc$" 
-                name="mercator" 
-                recheckAfter="15 min"
-                dateFormatMark="#REP14_#yyyyMMdd" 
-                olderThan="6 min"/>
+    <collection spec="/data/storage/data/geos3/REP14/data/NURC/oceanmod/MFS/merged/REP14.*\.nc$" name="mfs" recheckAfter="15 min" dateFormatMark="#REP14_#yyyyMMdd" olderThan="6 min"/>
 
-    <update startup="true" rescan="0 34 4-5 * * ? *" trigger="allow"/>
+    <update startup="true" rescan="0 39 4-5 * * ? *" trigger="allow"/>
     <fmrcConfig regularize="False" datasetTypes="Best"/>
 
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-     <attribute name="title" value="REP14:Mercator"/>
-     <attribute name="summary" value="insert blurb from cruise report"/>
+       <attribute name="title" value="REP14:MFS"/>
+       <attribute name="summary" value="insert blurb from data report here. "/>
      </netcdf>
     </protoDataset>
-
-   <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-     <variable name="ssh">
-      <attribute name="standard_name" value="sea_surface_height"/>
-     </variable>
-    </netcdf>
    </featureCollection>
 
   </dataset>

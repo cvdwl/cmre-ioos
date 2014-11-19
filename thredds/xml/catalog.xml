@@ -4,8 +4,8 @@
  name="THREDDS Top Catalog, points to other THREDDS catalogs" version="1.0.1">
 
  <catalogRef xlink:href="all_files.xml" xlink:title="All files" name=""/>
- <catalogRef xlink:href="cf_models.xml" xlink:title="CF Model Runs" name=""/>
- <catalogRef xlink:href="cf_gliders.xml" xlink:title="CF Glider Data" name=""/>
+ <catalogRef xlink:href="cf_models.xml" xlink:title="Models" name=""/>
+ <catalogRef xlink:href="cf_gliders.xml" xlink:title="Gliders" name=""/>
 
 </catalog>
 

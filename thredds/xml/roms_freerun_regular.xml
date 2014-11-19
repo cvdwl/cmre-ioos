@@ -26,24 +26,15 @@
 
     <update startup="true" rescan="0 34 4-5 * * ? *" trigger="allow"/>
 
+
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-      <variable name="temperature">
-       <attribute name="_FillValue" type="float" value="0.0"/>
-       <attribute name="units" value="Celcius"/>
-       <attribute name="standard_name" value="sea_water_potential_temperature"/>
-      </variable>
-      <variable name="salinity">
-       <attribute name="units" value="0.001"/>
-       <attribute name="_FillValue" type="float" value="0.0"/>
-       <attribute name="standard_name" value="sea_water_salinity"/>
-      </variable>
-     <attribute name="Conventions" value="CF-1.0"/>
-     <attribute name="title" value="CMRE ROMS Free-Run (regular grid)"/>
-     <attribute name="summary" value="CMRE ROMS Free-Run (regular grid)"/>
+
+     <attribute name="title" value="REP14:CMRE:ROMS:Free-Run (regular grid)"/>
+     <attribute name="summary" value="During the entire sea trial, CMRE implemented a limited­area configuration of the Regional Ocean Modeling System (ROMS). ROMS is a primitive­equation, finite­difference, hydro ­ static and free­surface model using generalized terrain­following s­coordinates. The  ROMS domain covers the Sardinian Sea with four open boundaries located  at  6.52°E  (west) , 8.58°E (east), 38.6°N  (south),  and 40.94°N  (north). The horizontal resolution is 1.5km,  and the vertical grid is composed of 32 s­levels. The momentum, heat and freshwater fluxes at the surface are computed  from COSMO­ME. Open boundary conditions are applied to tracers and baroclinic velocity with radiation and nudging. The free surface boundary conditions use the method of Chapman implicit while the depth­integrated boundary condition use the method of Flather. External values at the open boundaries were provided by daily averages of  the  larger scale MFS model.  ROMS  was initialized on 1 March 2014 using an analysis field from MFS model. Since then, it has been run in forecast mode once a day at 08:00 CEST without data assimilation, with output data every three hours and a forecast range of 72 hours. The results in this regular grid dataset were interpolated to from the native ROMS stretched vertical coordinates to uniform z levels. "/> 
+
      </netcdf>
     </protoDataset>
-
     <fmrcConfig regularize="False" datasetTypes="Best"/>
 
  <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
@@ -60,8 +51,22 @@
       <attribute name="units" value="m"/>
       <attribute name="positive" value="down"/>
      </variable>
+     <variable name="zeta">
+      <attribute name="standard_name" value="sea_surface_height"/>
+     </variable>
+     <variable name="salinity">
+      <attribute name="standard_name" value="sea_water_salinity"/>
+     </variable>
+     <variable name="temperature">
+      <attribute name="standard_name" value="sea_water_potential_temperature"/>
+     </variable>
+     <variable name="u">
+      <attribute name="standard_name" value="eastward_sea_water_velocity"/>
+     </variable>
+     <variable name="v">
+      <attribute name="standard_name" value="northward_sea_water_velocity"/>
+     </variable>
     </netcdf>
-
 
    </featureCollection>
 

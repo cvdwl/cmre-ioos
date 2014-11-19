@@ -11,44 +11,64 @@
   <service name="uddc" serviceType="UDDC" base="/thredds/uddc/"/>
 
  </service>
-  <dataset name="NRL Nowcast/Forecast Runs" >
+  <dataset name="SOCIB WMOP ROMS Nowcast/Forecast Runs">
 
 
-   <featureCollection name="nrl" featureType="FMRC" harvest="true" path="nrl/fmrc">
+   <featureCollection name="socib_roms" featureType="FMRC" harvest="true" path="socib_roms/fmrc">
     <metadata inherited="true">
-     <documentation type="summary">NRL Output </documentation>
      <serviceName>allServices</serviceName>
     </metadata>
-    <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/NRL/med_3km.*\.nc$" 
-                name="nrl" 
+    <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/ROMS_WMOP_SOCIB/.*_72h_his_regular\.nc$" 
+                name="socib_roms" 
                 recheckAfter="15 min"
-                dateFormatMark="#med_3km_#yyyyMMdd" 
+                dateFormatMark="#REP14_#yyyyMMdd" 
                 olderThan="6 min"/>
 
     <update startup="true" rescan="0 34 4-5 * * ? *" trigger="allow"/>
 
+    <protoDataset choice="Penultimate">
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+
+     <attribute name="title" value="REP14:SOCIB:WMOP"/>
+     <attribute name="summary" value="Insert blurb from data report here. "/>
+
+     </netcdf>
+    </protoDataset>
+
     <fmrcConfig regularize="False" datasetTypes="Best"/>
 
-    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-     <remove type="variable" name="tau"/>
-
-     <variable name="surf_el">
-      <attribute name="standard_name" value="sea_surface_height"/>
+ <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+     <variable name="time">
+      <attribute name="units" value="days since -0001-12-31 00:00"/>
+     </variable>
+     <variable name="longitude">
+      <attribute name="units" value="degrees_east"/>
+     </variable>
+     <variable name="latitude">
+      <attribute name="units" value="degrees_north"/>
+     </variable>
+     <variable name="depth">
+      <attribute name="units" value="m"/>
+      <attribute name="positive" value="down"/>
      </variable>
      <variable name="salinity">
+      <attribute name="units" value="0.001"/>
       <attribute name="standard_name" value="sea_water_salinity"/>
      </variable>
-     <variable name="water_temp">
+     <variable name="temperature">
+      <attribute name="units" value="Celcius"/>
       <attribute name="standard_name" value="sea_water_potential_temperature"/>
      </variable>
-     <variable name="water_u">
+     <variable name="ssh">
+      <attribute name="standard_name" value="sea_surface_height"/>
+     </variable>
+     <variable name="u">
       <attribute name="standard_name" value="eastward_sea_water_velocity"/>
      </variable>
-     <variable name="water_v">
+     <variable name="v">
       <attribute name="standard_name" value="northward_sea_water_velocity"/>
      </variable>
     </netcdf>
-
 
 
    </featureCollection>
