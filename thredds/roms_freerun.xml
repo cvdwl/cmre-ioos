@@ -1,0 +1,50 @@
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0 http://www.unidata.ucar.edu/schemas/thredds/InvCatalog.1.0.4.xsd"
+ xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink" name="OPeNDAP Data Server" version="1.0.3">
+ <service name="allServices" serviceType="Compound" base="">
+  <service name="ncdods" serviceType="OPENDAP" base="/thredds/dodsC/"/>
+  <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/grid/"/>
+  <service name="wms" serviceType="WMS" base="/thredds/wms/"/>
+  <service name="iso" serviceType="ISO" base="/thredds/iso/"/>
+  <service name="ncml" serviceType="NCML" base="/thredds/ncml/"/>
+  <service name="uddc" serviceType="UDDC" base="/thredds/uddc/"/>
+
+ </service>
+  <dataset name="CMRE ROMS Nowcast/Forecast Runs" ID="coast_fc">
+
+
+   <featureCollection name="cmre_roms" featureType="FMRC" harvest="true" path="cmre_roms/fmrc">
+    <metadata inherited="true">
+     <documentation type="summary">ROMS Output from CMRE ROMS</documentation>
+     <serviceName>allServices</serviceName>
+    </metadata>
+    <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/ROMS/native/.*REF_72h_his.nc$" 
+                name="cmre_roms" 
+                recheckAfter="15 min"
+                dateFormatMark="#roms_#yyyyMMdd" 
+                olderThan="6 min"/>
+
+    <update startup="true" rescan="0 34 4-5 * * ? *" trigger="allow"/>
+
+    <protoDataset choice="Penultimate">
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+      <variable name="temp">
+       <attribute name="_FillValue" type="float" value="0.0"/>
+      </variable>
+      <variable name="salt">
+       <attribute name="_FillValue" type="float" value="0.0"/>
+      </variable>
+      <variable name="zeta">
+       <attribute name="_FillValue" type="float" value="0.0"/>
+      </variable>
+     </netcdf>
+    </protoDataset>
+
+    <fmrcConfig regularize="False" datasetTypes="Best"/>
+
+
+   </featureCollection>
+
+  </dataset>
+</catalog>

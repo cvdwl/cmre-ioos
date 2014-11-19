@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ name="THREDDS Top Catalog, points to other THREDDS catalogs" version="1.0.1">
+
+ <catalogRef xlink:href="roms_freerun.xml" xlink:title="CMRE:ROMS Free Run" name=""/>
+ <catalogRef xlink:href="roms_freerun_regular.xml" xlink:title="CMRE:ROMS Free Run regular" name=""/>
+ <catalogRef xlink:href="mercator.xml" xlink:title="Mercator" name=""/>
+ <catalogRef xlink:href="nrl.xml" xlink:title="NRL:NCOM" name=""/> 
+ <catalogRef xlink:href="http://thredds.socib.es/thredds/catalog/operational_models/oceanographical/hydrodynamics/model_run_aggregation/wmopv2/catalog.xml" xlink:title="SOCIB:WMOPV2" name=""/>
+</catalog>
+

@@ -1,0 +1,68 @@
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0 http://www.unidata.ucar.edu/schemas/thredds/InvCatalog.1.0.4.xsd"
+ xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink" name="OPeNDAP Data Server" version="1.0.3">
+ <service name="allServices" serviceType="Compound" base="">
+  <service name="ncdods" serviceType="OPENDAP" base="/thredds/dodsC/"/>
+  <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/grid/"/>
+  <service name="wms" serviceType="WMS" base="/thredds/wms/"/>
+  <service name="iso" serviceType="ISO" base="/thredds/iso/"/>
+  <service name="ncml" serviceType="NCML" base="/thredds/ncml/"/>
+  <service name="uddc" serviceType="UDDC" base="/thredds/uddc/"/>
+
+ </service>
+
+
+   <featureCollection name="cmre_roms_regular" featureType="FMRC" harvest="true" path="cmre_roms_regular/fmrc">
+    <metadata inherited="true">
+     <documentation type="summary">ROMS Output from CMRE ROMS (regular grid)</documentation>
+     <serviceName>allServices</serviceName>
+    </metadata>
+    <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/ROMS/regular/.*REF_72h_his_regular.nc$" 
+                name="cmre_roms_regular" 
+                recheckAfter="15 min"
+                dateFormatMark="#roms_#yyyyMMdd" 
+                olderThan="6 min"/>
+
+    <update startup="true" rescan="0 34 4-5 * * ? *" trigger="allow"/>
+
+    <protoDataset choice="Penultimate">
+     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+      <variable name="temperature">
+       <attribute name="_FillValue" type="float" value="0.0"/>
+       <attribute name="units" value="Celcius"/>
+       <attribute name="standard_name" value="sea_water_potential_temperature"/>
+      </variable>
+      <variable name="salinity">
+       <attribute name="units" value="0.001"/>
+       <attribute name="_FillValue" type="float" value="0.0"/>
+       <attribute name="standard_name" value="sea_water_salinity"/>
+      </variable>
+     <attribute name="Conventions" value="CF-1.0"/>
+     <attribute name="title" value="CMRE ROMS Free-Run (regular grid)"/>
+     <attribute name="summary" value="CMRE ROMS Free-Run (regular grid)"/>
+     </netcdf>
+    </protoDataset>
+
+    <fmrcConfig regularize="False" datasetTypes="Best"/>
+
+ <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+     <variable name="time">
+      <attribute name="units" value="days since -0001-12-31 00:00"/>
+     </variable>
+     <variable name="longitude">
+      <attribute name="units" value="degrees_east"/>
+     </variable>
+     <variable name="latitude">
+      <attribute name="units" value="degrees_north"/>
+     </variable>
+     <variable name="depth">
+      <attribute name="units" value="m"/>
+      <attribute name="positive" value="down"/>
+     </variable>
+    </netcdf>
+
+
+   </featureCollection>
+
+</catalog>
