@@ -1,6 +1,6 @@
 
-%variable = 'salt';
-variable = 'temp';
+variable = 'salt';
+%variable = 'temp';
 
 % will use dynamic field names with structures to process variable named
 % above
@@ -94,6 +94,8 @@ romsfr.file = 'romsfr.nc';
 romsfr.temp.name = 'temp';
 romsfr.salt.name = 'salt';
 
+
+
 % -----------------------------------------------------------------------
 % Model: ESPreSSO CF-compliant ROMS aggregation
 espresso.name = 'espresso';
@@ -103,7 +105,13 @@ espresso.file = 'espresso.nc';
 espresso.temp.name = 'temp';
 espresso.salt.name = 'salt';
 
-
+% -----------------------------------------------------------------------
+% Model: MFS
+mfs.name = 'mfs';
+mfs.url = 'http://scsrv26v:8080/thredds/dodsC/mfs/fmrc/mfs_best.ncd';
+mfs.file = 'romsfr.nc';
+mfs.temp.name = 'votemper';
+mfs.salt.name = 'vosaline';
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
 % Model: SABGOM CF-compliant ROMS aggregation
@@ -121,13 +129,18 @@ nrllt.url = 'http://scsrv26v:8080/thredds/dodsC/nrl/fmrc/nrl_best.ncd'
 nrllt.file = 'nrl_ncom.nc';
 nrllt.temp.name = 'water_temp';
 nrllt.salt.name = 'salinity';
-
 % ROMS regular grid
 romsreg.name='romsreg';
 romsreg.file = 'foo.nc';
 romsreg.url='http://scsrv26v:8080/thredds/dodsC/cmre_roms_regular/fmrc/cmre_roms_regular_best.ncd'
 romsreg.temp.name = 'temperature';
 romsreg.salt.name = 'salinity';
+% SOCIB regular
+socibreg.name='socibreg';
+socibreg.file = 'foo.nc';
+socibreg.url='http://scsrv26v:8080/thredds/dodsC/socib_roms/fmrc/socib_roms_best.ncd';
+socibreg.temp.name = 'temperature';
+socibreg.salt.name = 'salinity';
 % -----------------------------------------------------------------------
 % Model: Global HYCOM RTOFS (HYCOM) Region 1
 hycom.name = 'hycom';
@@ -142,7 +155,7 @@ hycom.salt.name = 'salinity';
 model_list = {'USEAST','SABGOM','HYCOM'};     %SECOORA
 
 %model_list = {'USEAST','HYCOM'};     %SECOORA
-model_list = {'NRLLT','MERCATOR','ROMSREG'};
+model_list = {'NRLLT','MERCATOR','ROMSREG','SOCIBREG','MFS'};
 
 ncks = 0;
 

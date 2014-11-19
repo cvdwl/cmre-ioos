@@ -13,12 +13,13 @@ obsname = obs.name
 switch variable
   case 'temp'
     bins = 22:0.25:30.;
-    bins = 16:0.25:26.;
+    bins = 13:0.25:26.;
     c = range(bins);
   case 'salt'
  %   bins = 29:0.2:36.5;  %MARACOOS
      bins = 35.5:.1:36.3; % SECOORA
      bins = 37.3:.05:38.5; % CMRE
+ %    bins = 37:0.05:38
     c = range(bins);
   otherwise
     c = 'auto';
@@ -27,7 +28,7 @@ end
 %model_list = {'OBS','ESPreSSo','USEAST','HYCOM'}; %MARACOOS
 model_list = {'OBS','SABGOM','USEAST','HYCOM'}; %SECOORA
 %model_list = {'OBS','USEAST','HYCOM'}; %SECOORA
-model_list = {'OBS','NRLLT','MERCATOR','ROMSREG'}
+model_list = {'OBS','NRLLT','MERCATOR','ROMSREG','SOCIBREG','MFS'}
 
 clf
 hax = nfigaxes([length(model_list) 1],[0 0.02],[0.1 0.95],[0.1 0.95]);
