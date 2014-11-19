@@ -18,8 +18,8 @@ variable = 'temp';
 %    'cool/glider/mab/Gridded/20130813T000000_20130826T000000_njdep_ru28.nc']
 %obs.url=['http://scsrv26v:8080/thredds/dodsC/' ...
 %    'models/geos3/REP14/data/NURC/gliders/noa/GL-20140609-noa-MEDREP14depl001-grid-D.nc']
-%obs.url='http://scsrv26v:8080/thredds/dodsC/models/geos3/REP14/data/NURC/gliders/ncml/GL-20140609-noa-MEDREP14depl001-grid-D.nc.ncml';
-obs.url='http://scsrv26v:8080/thredds/dodsC/models/geos3/REP14/data/NURC/gliders/ncml/GL-20140608-zoe-MEDREP14depl001-grid-D.nc.ncml'
+obs.url=['http://scsrv26v:8080/thredds/dodsC/' ...
+      'gliders/GL-20140608-zoe-MEDREP14depl001-grid-D.nc.ncml'];
 obs.file = obs.url;
 obs.temp.name = 'ctd_temp';
 obs.salt.name = 'ctd_salt';
@@ -103,6 +103,7 @@ espresso.file = 'espresso.nc';
 espresso.temp.name = 'temp';
 espresso.salt.name = 'salt';
 
+
 % -----------------------------------------------------------------------
 % -----------------------------------------------------------------------
 % Model: SABGOM CF-compliant ROMS aggregation
@@ -120,6 +121,13 @@ nrllt.url = 'http://scsrv26v:8080/thredds/dodsC/nrl/fmrc/nrl_best.ncd'
 nrllt.file = 'nrl_ncom.nc';
 nrllt.temp.name = 'water_temp';
 nrllt.salt.name = 'salinity';
+
+% ROMS regular grid
+romsreg.name='romsreg';
+romsreg.file = 'foo.nc';
+romsreg.url='http://scsrv26v:8080/thredds/dodsC/cmre_roms_regular/fmrc/cmre_roms_regular_best.ncd'
+romsreg.temp.name = 'temperature';
+romsreg.salt.name = 'salinity';
 % -----------------------------------------------------------------------
 % Model: Global HYCOM RTOFS (HYCOM) Region 1
 hycom.name = 'hycom';
@@ -134,7 +142,7 @@ hycom.salt.name = 'salinity';
 model_list = {'USEAST','SABGOM','HYCOM'};     %SECOORA
 
 %model_list = {'USEAST','HYCOM'};     %SECOORA
-model_list = {'NRLLT','MERCATOR','ROMSFR'};
+model_list = {'NRLLT','MERCATOR','ROMSREG'};
 
 ncks = 0;
 

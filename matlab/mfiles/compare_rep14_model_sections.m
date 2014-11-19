@@ -27,7 +27,7 @@ end
 %model_list = {'OBS','ESPreSSo','USEAST','HYCOM'}; %MARACOOS
 model_list = {'OBS','SABGOM','USEAST','HYCOM'}; %SECOORA
 %model_list = {'OBS','USEAST','HYCOM'}; %SECOORA
-model_list = {'OBS','NRLLT','MERCATOR'}
+model_list = {'OBS','NRLLT','MERCATOR','ROMSREG'}
 
 clf
 hax = nfigaxes([length(model_list) 1],[0 0.02],[0.1 0.95],[0.1 0.95]);
@@ -42,6 +42,7 @@ for m = 1:length(model_list)
       model.(variable).data=model.(variable).data-273.15;
   end
   pcolorjw(model.(variable).dist,model.(variable).z,model.(variable).data)
+  shading interp
   %axis([0 200 -80 0]);
   ax=[0 350 -50 0];
   axis(ax);
