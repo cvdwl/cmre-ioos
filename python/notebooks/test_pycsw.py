@@ -15,8 +15,7 @@ import numpy as np
 # <codecell>
 
 endpoint='http://scsrv26v:8000/pycsw'
-endpoint='http://scsrv26v:8000'
-endpoint='http://www.ngdc.noaa.gov/geoportal/csw'
+#endpoint='http://www.ngdc.noaa.gov/geoportal/csw'
 
 csw = CatalogueServiceWeb(endpoint,timeout=60)
 csw.version
@@ -24,24 +23,6 @@ csw.version
 # <codecell>
 
 csw.get_operation_by_name('GetRecords').constraints
-
-# <codecell>
-
-try:
-    csw.get_operation_by_name('GetDomain')
-    csw.getdomain('apiso:Format', 'property')
-    print(csw.results['values'])
-except:
-    print('GetDomain not supported')
-
-# <codecell>
-
-try:
-    csw.get_operation_by_name('GetDomain')
-    csw.getdomain('apiso:ServiceType', 'property')
-    print(csw.results['values'])
-except:
-    print('GetDomain not supported')
 
 # <codecell>
 
@@ -56,25 +37,23 @@ def dateRange(start_date='1900-01-01',stop_date='2100-01-01',constraint='overlap
 
 # <codecell>
 
-box=[-20., 10., 20., 50.]  # Italy
-start_date='2014-03-12 18:00';
-stop_date='2014-09-18 18:00';
-
-# <codecell>
-
-val = 'temperature'
-filter1 = fes.PropertyIsLike(propertyname='apiso:AnyText',literal=('*%s*' % val),
-                        escapeChar='\\',wildCard='*',singleChar='?')
+box=[38., 6., 41., 9.]     #  lon_min lat_min lon_max lat_max
+start_date='2014-03-12 18:00'
+stop_date='2014-09-18 18:00'
+val = 'sea_water_potential_temperature'
 
 # <codecell>
 
 # convert User Input into FES filters
 start,stop = dateRange(start_date,stop_date)
 bbox = fes.BBox(box)
+any_text = fes.PropertyIsLike(propertyname='apiso:AnyText',literal=('*%s*' % val),
+                        escapeChar='\\',wildCard='*',singleChar='?')
 
 # <codecell>
 
-filter_list = [fes.And([ start, stop, bbox,filter1]) ]
+# combine filters into a list
+filter_list = [fes.And([ start, stop, bbox,any_text]) ]
 
 # <codecell>
 
@@ -102,13 +81,25 @@ def service_urls(records,service_string='OPeNDAP:OPeNDAP'):
 
 # <codecell>
 
-scheme='urn:x-esri:specification:ServiceType:odp:url'
-#scheme='OPeNDAP:OPeNDAP'
+#scheme='urn:x-esri:specification:ServiceType:odp:url'
+scheme='OPeNDAP:OPeNDAP'
 urls = service_urls(csw.records,service_string=scheme)
 print "\n".join(urls)
 
 # <codecell>
 
+import iris
+import iris.plot as iplt
+import iris.quickplot as qplt
+import cartopy.crs as ccrs
+
+# <codecell>
+
+cube = iris.load_cube(urls[0],'sea_water_potential_temperature')
+
+# <codecell>
+
+print cube
 
 # <codecell>
 

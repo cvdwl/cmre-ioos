@@ -15,11 +15,7 @@ import iris
 
 # <codecell>
 
-url = 'GL-20140621-elettra-MEDREP14depl005-grid-R.nc'
-url = 'GL-20140620-jade-MEDREP14depl005-grid-R.nc'
-url = 'GL-20140620-wtd71-MEDREP14depl005-grid-R.nc'
-url = 'http://scsrv26v:8080/thredds/dodsC/models/geos3/REP14/data/NURC/gliders/noa/GL-20140609-noa-MEDREP14depl001-grid-D.nc'
-url = 'http://scsrv26v:8080/thredds/dodsC/models/geos3/REP14/data/NURC/gliders/ncml/GL-20140608-zoe-MEDREP14depl001-grid-D.nc.ncml'
+url = 'http://scsrv26v:8080/thredds/dodsC/gliders/GL-20140608-zoe-MEDREP14depl001-grid-D.nc.ncml'
 
 # <codecell>
 
@@ -118,26 +114,12 @@ plt.colorbar(cs)
 
 # <codecell>
 
-t = iris.load_cube(url,'sea_water_temperature')
-
-# <codecell>
-
-plt.plot(dist);
-
-# <codecell>
-
 bathy_url='http://geoport.whoi.edu/thredds/dodsC/bathy/srtm30plus_v1.nc'
 
 # <codecell>
 
-url='http://geoport.whoi.edu/thredds/dodsC/bathy/crm_vol1.nc'
-# Test Latitude coordinate increasing:
-#url='http://geoport.whoi.edu/thredds/dodsC/bathy/etopo1_bed_g2'
-# Test failure because lat is not uniformly spaced:
-#url='http://geoport.whoi.edu/thredds/dodsC/bathy/smith_sandwell_v11'
-box = [-71.4,41,-70.2,42]
-#box=[-71.0,41.0,-67.0,46.0]
-box = [lon.min(), lat.min(), lon.max(), lat.max()]
+#ox = [lon.min(), lat.min(), lon.max(), lat.max()]
+box = [6.5, 38.5, 9.0, 41.0]
 
 # <codecell>
 
@@ -157,17 +139,18 @@ def get_bathy(url,box):
 # <codecell>
 
 bathy_z, bathy_lon, bathy_lat = get_bathy(bathy_url,box)
-fig = plt.figure(figsize=(6, 6))
-ax = fig.add_axes([0.1, 0.15, 0.8, 0.8])
-pc = ax.pcolormesh(bathy_lon,bathy_lat, bathy_z,
-                   vmin=bathy_z.min(), vmax=0,
-                   cmap=plt.cm.RdBu_r)
-cbax = fig.add_axes([0.1, 0.08, 0.8, 0.02])
-cb = plt.colorbar(pc, cax=cbax, 
-                  orientation='horizontal')
-cb.set_label('Depth [m]')
-ax.set_aspect(1.0/np.cos(bathy_lat.min() * np.pi / 180.0))
 
 # <codecell>
 
+fig = plt.figure(figsize=(6, 6))
+ax = fig.add_axes([0.1, 0.15, 0.8, 0.8])
+bathy_z = ma.masked_where(bathy_z>0,bathy_z)
+# plot bathymetry
+pc = ax.pcolormesh(bathy_lon,bathy_lat, bathy_z,
+                   vmin=bathy_z.min(), vmax=0)
+# plot glider path
+plt.plot(lon,lat,'k-')
+cb = plt.colorbar(pc)
+cb.set_label('Depth [m]')
+ax.set_aspect(1.0/np.cos(bathy_lat.min() * np.pi / 180.0))
 
