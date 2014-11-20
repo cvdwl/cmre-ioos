@@ -29,7 +29,7 @@
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
 
-     <attribute name="title" value="REP14:CMRE:ROMS:Free-Run (native grid)"/>
+     <attribute name="title" value="REP14:Model:CMRE:ROMS:Native Grid:Free Run"/>
      <attribute name="summary" value="Insert blurb from final report.  "/>
 
      </netcdf>
@@ -61,7 +61,6 @@
 
    <featureCollection name="cmre_roms_regular" featureType="FMRC" harvest="true" path="cmre_roms_regular/fmrc">
     <metadata inherited="true">
-     <documentation type="summary">ROMS Output from CMRE ROMS (regular grid)</documentation>
      <serviceName>allServices</serviceName>
     </metadata>
     <collection spec="/storage/data/geos3/REP14/data/NURC/oceanmod/ROMS/regular/.*REF_72h_his_regular.nc$" 
@@ -76,10 +75,9 @@
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
 
-     <attribute name="title" value="REP14:CMRE:ROMS:Free-Run (regular grid)"/>
-     <attribute name="summary" value="During the entire sea trial, CMRE implemented a limited­area configuration of the Regional Ocean Modeling System (ROMS). ROMS is a primitive­equation, finite­difference, hydro ­ static and free­surface model using generalized terrain­following s­coordinates. The  ROMS domain covers the Sardinian Sea with four open boundaries located  at  6.52°E  (west) , 8.58°E (east), 38.6°N  (south),  and 40.94°N  (north). The horizontal resolution is 1.5km,  and the vertical grid is composed of 32 s­levels. The momentum, heat and freshwater fluxes at the surface are computed  from COSMO­ME. Open boundary conditions are applied to tracers and baroclinic velocity with radiation and nudging. The free surface boundary conditions use the method of Chapman implicit while the depth­integrated boundary condition use the method of Flather. External values at the open boundaries were provided by daily averages of  the  larger scale MFS model.  ROMS  was initialized on 1 March 2014 using an analysis field from MFS model. Since then, it has been run in forecast mode once a day at 08:00 CEST without data assimilation, with output data every three hours and a forecast range of 72 hours. The results in this regular grid dataset were interpolated to from the native ROMS stretched vertical coordinates to uniform z levels. "/> 
-
-     </netcdf>
+       <attribute name="title" value="REP14:Model:CMRE:ROMS:Regular Grid:Free-Run"/>
+       <attribute name="summary" value="Insert blurb from cruise report."/> 
+     </netcdf> 
     </protoDataset>
     <fmrcConfig regularize="False" datasetTypes="Best"/>
 
@@ -132,7 +130,7 @@
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
 
-     <attribute name="title" value="REP14:SOCIB:WMOP"/>
+     <attribute name="title" value="REP14:Model:SOCIB:WMOP"/>
      <attribute name="summary" value="Insert blurb from data report here. "/>
 
      </netcdf>
@@ -191,7 +189,7 @@
 
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-     <attribute name="title" value="REP14:Mercator"/>
+     <attribute name="title" value="REP14:Model:Mercator"/>
      <attribute name="summary" value="insert blurb from cruise report"/>
      </netcdf>
     </protoDataset>
@@ -215,7 +213,7 @@
 
     <protoDataset choice="Penultimate">
      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
-       <attribute name="title" value="REP14:MFS"/>
+       <attribute name="title" value="REP14:Model:MFS"/>
        <attribute name="summary" value="insert blurb from data report here. "/>
      </netcdf>
     </protoDataset>
@@ -255,6 +253,8 @@
      <variable name="water_v">
       <attribute name="standard_name" value="northward_sea_water_velocity"/>
      </variable>
+       <attribute name="title" value="REP14:Model:NRL long-range forecast"/>
+       <attribute name="summary" value="insert blurb from data report here. "/>
     </netcdf>
    </featureCollection>
 
