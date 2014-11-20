@@ -10,54 +10,62 @@
 %obsname = strrep_(obs.name);
 obsname = obs.name
 
+% set x,y axis for plotting
+ax=[0 350 -50 0];  % 350km long, 100m depth
+
 switch variable
-  case 'temp'
-    bins = 22:0.25:30.;
-    bins = 13:0.25:26.;
-    c = range(bins);
-  case 'salt'
- %   bins = 29:0.2:36.5;  %MARACOOS
-     bins = 35.5:.1:36.3; % SECOORA
-     bins = 37.3:.05:38.5; % CMRE
- %    bins = 37:0.05:38
-    c = range(bins);
-  otherwise
-    c = 'auto';
+    case 'temp'
+        bins = 22:0.25:30.;
+        bins = 13:0.25:26.;
+        c = range(bins);
+    case 'salt'
+        %   bins = 29:0.2:36.5;  %MARACOOS
+        bins = 35.5:.1:36.3; % SECOORA
+        bins = 37.3:.05:38.5; % CMRE
+        %    bins = 37:0.05:38
+        c = range(bins);
+    otherwise
+        c = 'auto';
 end
 
 %model_list = {'OBS','ESPreSSo','USEAST','HYCOM'}; %MARACOOS
 model_list = {'OBS','SABGOM','USEAST','HYCOM'}; %SECOORA
 %model_list = {'OBS','USEAST','HYCOM'}; %SECOORA
-model_list = {'OBS','NRLLT','MERCATOR','ROMSREG','SOCIBREG','MFS'}
+%model_list = {'OBS','NRLLT','MERCATOR','ROMSREG','SOCIBREG','MFS'}
+model_list = {'OBS','NRLLT','ROMSFR','MERCATOR','MFS'};
 
 clf
 hax = nfigaxes([length(model_list) 1],[0 0.02],[0.1 0.95],[0.1 0.95]);
 
 for m = 1:length(model_list)
-  
-  mname = char(model_list{m});
-  eval(['model = ' lower(mname)])
-  
-  axes(hax(m))
-  if min(model.(variable).data(:))>=200.
-      model.(variable).data=model.(variable).data-273.15;
-  end
-  pcolorjw(model.(variable).dist,model.(variable).z,model.(variable).data)
-  shading interp
-  %axis([0 200 -80 0]);
-  ax=[0 350 -50 0];
-  axis(ax);
-  caxis(c)
-  colorbar
-  
-  title_pos=ax(3)+5;
-  if m==1
-    title(upper(variable))
-    text(10,title_pos,{mname,(model.name)},'interpreter','none');
-  else
-    text(10,title_pos,mname);
-  end
-  
+    
+    mname = char(model_list{m});
+    eval(['model = ' lower(mname)])
+    
+    axes(hax(m))
+    if ~strncmp(lower(mname),'obs',3),% iterpolate onto obs z levels
+        model.(variable)=zinterp_struct(model.(variable),obs);
+    end
+    % handle case where temperature is in kelvin
+    if min(model.(variable).data(:))>=200.
+        model.(variable).data=model.(variable).data-273.15;
+    end
+    pcolorjw(model.(variable).dist,model.(variable).z,model.(variable).data)
+    set(gca,'xgrid','on','ygrid','on','layer','top');
+    set(gcf,'color',[0.85 0.85 0.85])
+
+    axis(ax);
+    caxis(c)
+    colorbar
+    
+    title_pos=ax(3)+5;
+    if m==1
+        title(upper(variable))
+        text(10,title_pos,{mname,(model.name)},'interpreter','none');
+    else
+        text(10,title_pos,mname);
+    end
+    
 end
 
 set(hax(1:(end-1)),'xticklabel',[])

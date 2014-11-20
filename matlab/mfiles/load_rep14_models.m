@@ -58,53 +58,20 @@ disp(['    ' datestr(tstart) ' to ' datestr(tend)])
 %
 
 %% -----------------------------------------------------------------------
-
-
 % -----------------------------------------------------------------------
-% Model: Global NCOM CF-compliant aggregation
-ncom.name = 'global_ncom';
-ncom.url = ['http://ecowatch.ncddc.noaa.gov/thredds/dodsC/' ...
-    'ncom/ncom_reg1_agg/NCOM_Region_1_Aggregation_best.ncd'];
-
-ncom.file = 'ncom.nc';
-ncom.temp.name = 'water_temp';
-ncom.salt.name = 'salinity';
-
-% -----------------------------------------------------------------------
-% Model: US-EAST (NCOM) CF-compliant aggregation
-useast.name = 'NRL';
-useast.url = 'http://scsrv26v:8080/thredds/dodsC/nrl/fmrc/nrl_best.ncd';
-useast.file = useast.url;
-useast.temp.name = 'water_temp';
-useast.salt.name = 'salinity';
-% -----------------------------------------------------------------------
-% Model: MERCATOR CF-compliant nc file extracted at myocean.eu
-% Registration and user/password authentication required
+% Model: MERCATOR 
 mercator.name = 'mercator';
 mercator.url = 'http://scsrv26v:8080/thredds/dodsC/mercator/fmrc/mercator_best.ncd'
 mercator.file = mercator.url;
-mercator.temp.name = 'temperature'; % <<< in KELVIN !!!!!!!!!!!!!!!!!!!!!
+mercator.temp.name = 'temperature'; % in KELVIN!
 mercator.salt.name = 'salinity';
-
 % -----------------------------------------------------------------------
-% Model: COAWST CF-compliant ROMS aggregation
+% Model: ROMS Free Run
 romsfr.name = 'romsfr';
 romsfr.url = 'http://scsrv26v:8080/thredds/dodsC/cmre_roms/fmrc/cmre_roms_best.ncd'
 romsfr.file = 'romsfr.nc';
 romsfr.temp.name = 'temp';
 romsfr.salt.name = 'salt';
-
-
-
-% -----------------------------------------------------------------------
-% Model: ESPreSSO CF-compliant ROMS aggregation
-espresso.name = 'espresso';
-espresso.url = ['http://tds.marine.rutgers.edu:8080/thredds/' ...
-    'dodsC/roms/espresso/2009_da/his'];
-espresso.file = 'espresso.nc';
-espresso.temp.name = 'temp';
-espresso.salt.name = 'salt';
-
 % -----------------------------------------------------------------------
 % Model: MFS
 mfs.name = 'mfs';
@@ -113,49 +80,31 @@ mfs.file = 'romsfr.nc';
 mfs.temp.name = 'votemper';
 mfs.salt.name = 'vosaline';
 % -----------------------------------------------------------------------
-% -----------------------------------------------------------------------
-% Model: SABGOM CF-compliant ROMS aggregation
-sabgom.name = 'NRL_NCOM';
-sabgom.url = 'http://scsrv26v:8080/thredds/dodsC/nrl/fmrc/nrl_best.ncd'
-
-sabgom.file = 'sabgom.nc';
-sabgom.temp.name = 'temp';
-sabgom.salt.name = 'salt';
-% -----------------------------------------------------------------------
-% -----------------------------------------------------------------------
 % Model: NRL_NCOM CF-compliant NCOM aggregation
 nrllt.name = 'nrllt';
 nrllt.url = 'http://scsrv26v:8080/thredds/dodsC/nrl/fmrc/nrl_best.ncd'
 nrllt.file = 'nrl_ncom.nc';
 nrllt.temp.name = 'water_temp';
 nrllt.salt.name = 'salinity';
-% ROMS regular grid
+% -----------------------------------------------------------------------
+% Model: ROMS regular grid
 romsreg.name='romsreg';
 romsreg.file = 'foo.nc';
 romsreg.url='http://scsrv26v:8080/thredds/dodsC/cmre_roms_regular/fmrc/cmre_roms_regular_best.ncd'
 romsreg.temp.name = 'temperature';
 romsreg.salt.name = 'salinity';
-% SOCIB regular
+% -----------------------------------------------------------------------
+% Model: SOCIB regular grid
 socibreg.name='socibreg';
 socibreg.file = 'foo.nc';
 socibreg.url='http://scsrv26v:8080/thredds/dodsC/socib_roms/fmrc/socib_roms_best.ncd';
 socibreg.temp.name = 'temperature';
 socibreg.salt.name = 'salinity';
-% -----------------------------------------------------------------------
-% Model: Global HYCOM RTOFS (HYCOM) Region 1
-hycom.name = 'hycom';
-hycom.url = ['http://ecowatch.ncddc.noaa.gov/thredds/dodsC/' ...
-    'hycom/hycom_reg1_agg/HYCOM_Region_1_Aggregation_best.ncd'];
-hycom.file = 'hycom.nc';
-hycom.temp.name = 'water_temp';
-hycom.salt.name = 'salinity';
+
 
 %% models to compare with data
-%model_list = {'USEAST','ESPreSSO','HYCOM'};  %MARACOOS
-model_list = {'USEAST','SABGOM','HYCOM'};     %SECOORA
 
-%model_list = {'USEAST','HYCOM'};     %SECOORA
-model_list = {'NRLLT','MERCATOR','ROMSREG','SOCIBREG','MFS'};
+model_list = {'NRLLT','ROMSFR','MERCATOR','MFS'};
 
 ncks = 0;
 
