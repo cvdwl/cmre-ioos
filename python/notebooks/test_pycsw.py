@@ -3,7 +3,11 @@
 
 # <headingcell level=1>
 
-# CMRE pyCSW
+# CMRE search, access and visualize demo
+
+# <headingcell level=2>
+
+# Search for data using OGC Catalog Service for the Web (CSW)
 
 # <codecell>
 
@@ -16,7 +20,6 @@ import numpy as np
 
 endpoint='http://scsrv26v:8000/pycsw'
 #endpoint='http://www.ngdc.noaa.gov/geoportal/csw'
-
 csw = CatalogueServiceWeb(endpoint,timeout=60)
 csw.version
 
@@ -86,20 +89,56 @@ scheme='OPeNDAP:OPeNDAP'
 urls = service_urls(csw.records,service_string=scheme)
 print "\n".join(urls)
 
+# <headingcell level=2>
+
+# Use Iris to access CF data
+
 # <codecell>
 
 import iris
 import iris.plot as iplt
 import iris.quickplot as qplt
 import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
+%matplotlib inline
 
 # <codecell>
 
-cube = iris.load_cube(urls[0],'sea_water_potential_temperature')
+cube = iris.load_cube(urls[7],'sea_water_potential_temperature')
 
 # <codecell>
 
 print cube
+
+# <headingcell level=2>
+
+# Make a nice plot using Cartopy (better than Basemap)
+
+# <codecell>
+
+from matplotlib import rcParams
+from matplotlib.ticker import MultipleLocator
+rcParams['xtick.direction'] = 'out'
+rcParams['ytick.direction'] = 'out'
+
+fig=plt.figure(figsize=(12,8))
+
+# set the projection
+ax1 = plt.axes(projection=ccrs.Mercator())
+
+# color filled contour plot
+h = iplt.contourf(cube[1,0,:,:],64)
+
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+gl=ax1.gridlines(crs=ccrs.PlateCarree(),draw_labels=True)
+gl.xlabels_top = False
+gl.ylabels_right = False 
+gl.xformatter = LONGITUDE_FORMATTER
+gl.yformatter = LATITUDE_FORMATTER
+# add coastlines, colorbar and title
+plt.gca().coastlines(resolution='10m')
+plt.colorbar(h,orientation='vertical');
+plt.title(cube.attributes['title']);
 
 # <codecell>
 
