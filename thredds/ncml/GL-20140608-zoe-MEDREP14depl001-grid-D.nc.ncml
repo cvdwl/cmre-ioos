@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="/storage/data/geos3/REP14/data/NURC/gliders/zoe/GL-20140608-zoe-MEDREP14depl001-grid-D.nc">
+<!-- <attribute name="cdm_data_type" value="trajectoryProfile" />  -->
+  <attribute name="Conventions" value="CF-1.6" />
+  <attribute name="title" value="REP14:Glider:Zoe full deployment" />
+  <attribute name="summary" value="insert blurb from cruise report." />
+
+  <variable name="ctd_depth" >
+    <attribute name="positive" value="down" />
+  </variable>
+  <variable name="trajectory_id" shape="" type="int">
+    <attribute name="cf_role" value="trajectory_id" />
+    <values> 1001 </values>
+  </variable>  
+  <variable name="bbfl2s_backscattering" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="bbfl2s_cdom" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="bbfl2s_chlorophyl" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_cond" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_pden" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_pres" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_ptmp" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_salt" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_svel" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ctd_temp" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_Ksrs" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_irrad1" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_irrad2" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_irrad3" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_irrad4" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_qc" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+  <variable name="ocr_zenithAngle" shape="ocrProfile ocrDepth" type="double">
+    <attribute name="coordinates"  value="ctd_time ctd_depth ctd_longitude ctd_latitude"/>
+  </variable>
+</netcdf>

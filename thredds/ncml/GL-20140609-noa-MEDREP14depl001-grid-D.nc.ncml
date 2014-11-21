@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="/storage/data/geos3/REP14/data/NURC/gliders/noa/GL-20140609-noa-MEDREP14depl001-grid-D.nc">
+  <attribute name="Conventions" value="CF-1.6" />
+  <attribute name="title" value="REP14:Glider:Noa full deployment" />
+  <attribute name="summary" value="insert blurb from cruise report" />
+
+  <variable name="trajectory" shape="" type="int">
+    <attribute name="cf_role" value="trajectory_id" />
+    <values> 1000 </values>
+  </variable>  
+  <variable name="ctd_depth" shape="ctdDepth" type="double">
+    <attribute name="positive" value="down"/>
+  </variable>
+  <variable name="bbfl2s_backscattering" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="bbfl2s_cdom" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="bbfl2s_chlorophyl" shape="bbfl2sProfile bbfl2sDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_cond" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_pden" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_pres" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_ptmp" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_salt" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_svel" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+  <variable name="ctd_temp" shape="ctdProfile ctdDepth" type="double">
+    <attribute name="coordinates" value="ctd_time ctd_longitude ctd_latitude ctd_depth"/>
+  </variable>
+</netcdf>
